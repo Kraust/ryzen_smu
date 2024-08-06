@@ -458,15 +458,15 @@ const char* get_pbo_scalar(smu_obj_t* obj) {
       case CODENAME_MATISSE:
       case CODENAME_VERMEER:
       case CODENAME_RAPHAEL:
-        return 0;
+        memset(&args, 0, sizeof(args));
+        if (smu_send_command(obj, 0x6C, &args, TYPE_RSMU) != SMU_Return_OK)
+            return "?";
+
+        sprintf(buf, "%.fx", args.args_f[0]);
+        return buf;
     }
 
-    memset(&args, 0, sizeof(args));
-    if (smu_send_command(obj, 0x6C, &args, TYPE_RSMU) != SMU_Return_OK)
-        return "?";
-
-    sprintf(buf, "%.fx", args.args_f[0]);
-    return buf;
+    return 0;
 }
 
 void start_pm_monitor(int force) {
