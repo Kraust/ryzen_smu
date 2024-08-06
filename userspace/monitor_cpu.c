@@ -454,7 +454,7 @@ const char* get_pbo_scalar(smu_obj_t* obj) {
     smu_arg_t args;
     smu_return_val err;
 
-    switch(codename) {
+    switch(obj->codename) {
       case CODENAME_MATISSE:
       case CODENAME_VERMEER:
       case CODENAME_RAPHAEL:
